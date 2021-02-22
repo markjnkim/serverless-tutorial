@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: "foobar-app\nA simple backend with a RESTful API endpoint using Amazon\
+  \ Gateway and DynamoDB\n"
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  hello:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://sam-test-foobar-bucket/86faecfef5742a23305a1cfafa5adbbe
+      Handler: handler.hello
+      Runtime: nodejs14.x
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: ANY
